@@ -1,0 +1,30 @@
+{
+	"type": "module",
+	"name": "trevelo-server",
+	"version": "1.0.0",
+	"scripts": {
+		"dev": "nodemon --watch src --ext js,mjs,cjs --exec node src/server.js",
+		"start": "NODE_ENV=production node src/server.js",
+		"lint": "eslint .",
+		"test": "node --test"
+	},
+	"dependencies": {
+		"@aws-sdk/client-dynamodb": "^3.645.0",
+		"@aws-sdk/lib-dynamodb": "^3.645.0",
+		"axios": "^1.7.5",
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"express-rate-limit": "^8.2.1",
+		"helmet": "^7.0.0",
+		"jsonwebtoken": "^9.0.2",
+		"jwk-to-pem": "^2.0.5",
+		"morgan": "^1.10.0",
+		"openai": "^4.55.0",
+		"zod": "^3.23.8"
+	},
+	"devDependencies": {
+		"eslint": "^9.13.0",
+		"nodemon": "^3.1.7"
+	}
+}
