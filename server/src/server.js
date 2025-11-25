@@ -1,4 +1,3 @@
-// src/server.js
 import { createApp } from "./app.js";
 import { config } from "./config/env.js";
 
@@ -16,7 +15,6 @@ function start() {
     });
 }
 
-// Graceful shutdown for nodemon/production
 function shutdown(signal) {
     console.log(`Received ${signal}, shutting down...`);
     if (server) {
@@ -42,6 +40,3 @@ process.on("uncaughtException", (err) => {
 });
 
 start();
-
-// Optional: quick health log confirmation
-// curl http://localhost:4000/api/health -> {"ok":true,"service":"itinerary-api"}
