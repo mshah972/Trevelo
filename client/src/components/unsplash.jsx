@@ -13,7 +13,7 @@ import { createApi } from "unsplash-js";
  * before using this variable to avoid authentication issues.
  */
 const unsplash = createApi({
-    accessKey: process.env.VITE_UNSPLASH_API_KEY,
+    accessKey: import.meta.env.VITE_UNSPLASH_API_KEY,
 });
 
 /**

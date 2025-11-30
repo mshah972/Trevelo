@@ -12,6 +12,7 @@ export async function createJob(prompt) {
     const jobId = crypto.randomUUID();
     const now = Date.now();
     const item = {
+        id: jobId,
         PK: `JOB#${jobId}`,
         SK: "META",
         jobId,
@@ -24,14 +25,14 @@ export async function createJob(prompt) {
 }
 
 export async function getJob(jobId) {
-    const { Item } = await db.get({ PK: `JOB#${jobId}`, SK: "META" });
+    const { Item } = await db.get({ id: jobId });
     return Item || null;
 }
 
 export async function setJobRunning(jobId) {
     const now = Date.now();
     await db.update({
-        Key: { PK: `JOB#${jobId}`, SK: "META" },
+        Key: { id: jobId },
         UpdateExpression: "SET #s = :s, startedAt = :t",
         ExpressionAttributeNames: { "#s" : "status" },
         ExpressionAttributeValues: { ":s": JobStatus.running, ":t" : now },
@@ -42,7 +43,7 @@ export async function setJobRunning(jobId) {
 export async function setJobCompleted(jobId, data) {
     const now = Date.now();
     await db.update({
-        Key: { PK: `JOB#${jobId}`, SK: "META" },
+        Key: { id: jobId },
         UpdateExpression: "SET #s = :s, completedAt = :t, #d = :d",
         ExpressionAttributeNames: { "#s" : "status", "#d" : "data" },
         ExpressionAttributeValues: { ":s": JobStatus.completed, ":t": now, ":d" : data },
@@ -53,7 +54,7 @@ export async function setJobCompleted(jobId, data) {
 export async function setJobFailed(jobId, error) {
     const now = Date.now();
     await db.update({
-        Key: { PK: `JOB#${jobId}`, SK: "META" },
+        Key: { id: jobId },
         UpdateExpression: "SET #s = :s, completedAt = :t, #e = :e",
         ExpressionAttributeNames: { "#s": "status", "#e" : "error" },
         ExpressionAttributeValues: { ":s": JobStatus.failed, ":t": now, ":e": error },

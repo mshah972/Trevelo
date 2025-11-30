@@ -6,7 +6,7 @@ export async function getJobById(req, res, next) {
         const job = await getJob(id);
 
         if (!job) return res.status(404).json({ ok: false, error: "Job not found" });
-        res.json({ ok: true, job });
+        res.json({ job });
     } catch (err) {
         next(err);
     }

@@ -101,9 +101,19 @@ export const logoutUser = async () => {
  */
 export const getAuthToken = async () => {
     try {
-        const { token } = await fetchAuthSession();
-        return token?.idToken?.toString();
+        const session = await fetchAuthSession();
+
+        // Debugging Logs
+        console.log("Auth Session:", session);
+
+        if (!session.tokens) {
+            console.error("No tokens found in session!");
+            return null;
+        }
+
+        return session.tokens.idToken?.toString();
     } catch (err) {
+        console.error("Error fetching auth token:", err);
         return null;
     }
 };

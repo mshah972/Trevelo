@@ -5,6 +5,6 @@ import { getJobById } from "../controllers/jobs.controller.js";
 const router = Router();
 
 // GET /api/job/:id - requires auth
-router.get("/job/:id", authGuard, getJobById);
+router.get("/jobs/:id", authGuard, getJobById);
 
 export default router;

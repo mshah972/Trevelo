@@ -1,6 +1,6 @@
 import { generateTripPlanOrError } from "../services/openai.service.js";
 import { createTrip, listTrips, updateTrip, deleteTrip, getTrip } from "../services/trip.service.js";
-import {create} from "axios";
+// import {create} from "axios";
 
 export async function createTripFromPrompt(req, res, next){
     try {
